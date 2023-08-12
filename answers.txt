@@ -1,0 +1,9 @@
+Goal. To run a jar file from the command line, without needing to navigate into the file
+
+User. people with programming language, but limited experience of developing scripts that run via command line
+
+Instruction. instruction should be simple and east to follow. IT should work on a mac
+
+Detail. It should work on a mac
+
+Example. 

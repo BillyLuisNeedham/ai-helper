@@ -1,6 +1,0 @@
-to run the ai-helper, run 
-java -jar ai-helper.jar 
-
-if changes have been made run 
-kotlinc ai-helper.kt -include-runtime -d ai-helper.jar
-to create a jar then run the same as above

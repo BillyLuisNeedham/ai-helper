@@ -8,8 +8,8 @@ interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({ children, onClick }) => {
   return (
     <button
-      className="py-2 px-4 rounded-md bg-blue-500 text-white"
-      onClick={onClick}
+    className="bg-green-500 text-white py-2 px-4 rounded-md font-mono"
+    onClick={onClick}
     >
       {children}
     </button>

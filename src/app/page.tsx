@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from 'react';
-import { Button } from './components/Button';
-import { TextBox } from './components/TextBox';
-import { TextInput } from './components/TextInput';
+import { useState } from "react";
+import { Button } from "./components/Button";
+import { TextBox } from "./components/TextBox";
+import { TextInput } from "./components/TextInput";
 
 export default function Home() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
 
   const handleButtonClick = () => {
     console.log(text);
@@ -15,16 +15,14 @@ export default function Home() {
   return (
     <div className="p-4">
       <TextBox>This is the box of text.</TextBox>
-      <div className="mt-4">
+      <div className="flex mt-4">
         <TextInput
           value={text}
           onChange={setText}
           placeholder="Enter text here"
         />
+        <Button onClick={handleButtonClick}>Click me</Button>
       </div>
-      <Button onClick={handleButtonClick}>
-        Click me
-      </Button>
     </div>
   );
 }

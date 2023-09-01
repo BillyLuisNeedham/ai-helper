@@ -3,5 +3,9 @@ interface TextBoxProps {
 }
 
 export const TextBox: React.FC<TextBoxProps> = ({ children }) => {
-  return <div className="bg-gray-100 p-4 rounded-md">{children}</div>;
+    return (
+        <div className="bg-black text-white p-4 rounded-md font-mono">
+          {children}
+        </div>
+      );
 };

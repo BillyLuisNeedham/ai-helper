@@ -32,7 +32,18 @@ describe("PromptEngine", () => {
     expect(actualState).toEqual(expectedState);
   });
 
-  // TODO test that when the state is complete, when adding new answers to it, it does not change the state and just returns it
+  test("GIVEN the answers are complete WHEN a new answer is inserted THEN returns the state unchanged", () => {
+    const state: PromptComplete = {
+      status: "complete",
+      prompt: "Name: John\nAge: 30\nGender: Male",
+    };
+    const answer = "John";
+    const expectedState = state;
+
+    const actualState = PromptEngine(state, answer);
+
+    expect(actualState).toEqual(expectedState);
+  });
 });
 
 const questions = [

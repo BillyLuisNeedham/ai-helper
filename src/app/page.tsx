@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "./components/Button";
-import { TextBox } from "./components/TextBox";
-import { TextInput } from "./components/TextInput";
+import { Button } from "../components/Button";
+import { TextBox } from "../components/TextBox";
+import { TextInput } from "../components/TextInput";
 
 export default function Home() {
   const [text, setText] = useState("");

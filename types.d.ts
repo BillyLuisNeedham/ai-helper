@@ -13,3 +13,5 @@ interface PromptComplete {
     status: "complete",
     prompt: string
 }
+
+type PromptState = PromptInProgress | PromptComplete;

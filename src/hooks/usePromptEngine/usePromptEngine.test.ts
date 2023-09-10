@@ -49,4 +49,26 @@ describe("usePromptEngine", () => {
 
     expect(result.current.value).toEqual(expectedResult3);
   });
+
+  test('should return initial prompt state when user resets the prompt', () => {
+    // Arrange
+    const questions = [...]; // array of questions
+    const { result } = renderHook(() => usePromptEngine(questions));
+    const expectedResult: PromptInProgress = {
+      questions,
+      answers: [],
+      status: "in progress",
+    };
+
+    // Act
+    act(() => {
+      result.current.onNewAnswer("John");
+    });
+    act(() => {
+      result.current.reset();
+    });
+
+    // Assert
+    expect(result.current.value).toEqual(expectedResult);
+  });
 });

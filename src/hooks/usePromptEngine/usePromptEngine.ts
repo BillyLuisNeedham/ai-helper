@@ -8,9 +8,14 @@ export function usePromptEngine(questions: Question[]) {
     setValue(PromptEngine(value, answer));
   }
 
+  function reset() {
+    setValue(getInitialState(questions));
+  }
+
   return {
     value,
     onNewAnswer: handleChange,
+    reset
   };
 }
 

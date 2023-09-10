@@ -30,16 +30,23 @@ export default function Home() {
     }
   };
 
+  const handleReset = () => {
+    promptState.reset();
+    setDisplayText(GetDisplayText(promptState.value));
+    setInputText("");
+  };
+
   return (
-      <div className="p-4 bg-black text-white font-mono">
-        <div className="flex">
-          <div className="mr-2 text-green-500">$</div>
-          <div className="flex-1">
-            <TextBox text={displayText} />
-          </div>
+    <div className="p-4 bg-black text-white font-mono">
+      <div className="flex">
+        <div className="mr-2 text-green-500">$</div>
+        <div className="flex-1">
+          <TextBox text={displayText} />
         </div>
-        <div className="flex mt-4">
-          <div className="mr-2 text-green-500">$</div>
+      </div>
+      <div className="flex mt-4">
+        <div className="mr-2 text-green-500">$</div>
+        <div className="flex-1">
           <TextInput
             value={inputText}
             onChange={setInputText}
@@ -47,10 +54,20 @@ export default function Home() {
             placeholder="Enter text here"
           />
         </div>
-        <div className="flex mt-4">
-          <div className="mr-2 text-green-500">$</div>
-          <Button onClick={handleButtonClick}>Click me</Button>
+      </div>
+      <div className="flex mt-4">
+        <div className="mr-2 text-green-500">$</div>
+        <div className="flex-1">
+          <div className="flex">
+            <div className="mr-4">
+              <Button onClick={handleButtonClick}>Click me</Button>
+            </div>
+            <div>
+              <Button onClick={handleReset}>Reset</Button>
+            </div>
+          </div>
         </div>
       </div>
-    );
+    </div>
+  );
 }

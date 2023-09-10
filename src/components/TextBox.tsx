@@ -1,11 +1,13 @@
+import { convertStringToHtml } from "@/functions/ConvertStringToHtml/ConvertStringToHtml";
+
 interface TextBoxProps {
-  children: React.ReactNode;
+  text: string;
 }
 
-export const TextBox: React.FC<TextBoxProps> = ({ children }) => {
+export const TextBox: React.FC<TextBoxProps> = ({ text }) => {
+  let formattedText = convertStringToHtml(text);
+
     return (
-        <div className="bg-black text-white p-4 rounded-md font-mono">
-          {children}
-        </div>
+      <div className="bg-black text-white p-4 rounded-md font-mono" dangerouslySetInnerHTML={{ __html: formattedText }} />
       );
 };

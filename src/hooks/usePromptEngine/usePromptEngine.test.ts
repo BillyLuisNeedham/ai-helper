@@ -52,10 +52,9 @@ describe("usePromptEngine", () => {
 
   test('should return initial prompt state when user resets the prompt', () => {
     // Arrange
-    const questions = [...]; // array of questions
-    const { result } = renderHook(() => usePromptEngine(questions));
+    const { result } = renderHook(() => usePromptEngine(mockQuestions));
     const expectedResult: PromptInProgress = {
-      questions,
+      questions: mockQuestions,
       answers: [],
       status: "in progress",
     };

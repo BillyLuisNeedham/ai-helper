@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { TextBox } from "../components/TextBox";
 import { TextInput } from "../components/TextInput";
@@ -15,9 +15,19 @@ export default function Home() {
     GetDisplayText(promptState.value)
   );
 
+  useEffect(() => {
+    setDisplayText(GetDisplayText(promptState.value));
+  }, [promptState.value]);
+
   const handleButtonClick = () => {
     promptState.onNewAnswer(inputText);
-    setDisplayText(GetDisplayText(promptState.value));
+    setInputText("");
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.keyCode === 13) {
+      handleButtonClick();
+    }
   };
 
   return (
@@ -27,6 +37,7 @@ export default function Home() {
         <TextInput
           value={inputText}
           onChange={setInputText}
+          onKeyDown={handleKeyDown}
           placeholder="Enter text here"
         />
         <Button onClick={handleButtonClick}>Click me</Button>

@@ -1,25 +1,28 @@
-export function GetDisplayText(state: PromptState) {
+/**
+ * Returns the display text based on the given `PromptState` object.
+ * @param state - The `PromptState` object that contains the status, questions, and answers.
+ * @returns The formatted display text based on the `PromptState` object.
+ */
+export function GetDisplayText(state: PromptState): string {
   if (state.status === "in progress") {
     if (state.answers.length === 0) {
       return state?.questions[0]?.question ?? "";
     } else {
-      const amountOfAnswers = state.answers.length;
-
       let displayText = "";
 
-      for (let i = 0; i < amountOfAnswers; i++) {
-        displayText += `${state.questions[i].question}\n\n${state.answers[i]}\n\n`;
+      state.answers.forEach((answer, index) => {
+        displayText += `${state.questions[index].question}\n\n${answer}\n\n`;
 
-        if (i === amountOfAnswers - 1) {
-          displayText += `${state.questions[i + 1].question}`;
+        if (index === state.answers.length - 1) {
+          displayText += `${state.questions[index + 1].question}`;
         }
-      }
+      });
 
       return displayText;
     }
-  }
-  if (state.status === "complete") {
+  } else if (state.status === "complete") {
     return state.prompt;
+  } else {
+    return "";
   }
-  return "";
 }

@@ -31,17 +31,26 @@ export default function Home() {
   };
 
   return (
-    <div className="p-4">
-      <TextBox text={displayText} />
-      <div className="flex mt-4">
-        <TextInput
-          value={inputText}
-          onChange={setInputText}
-          onKeyDown={handleKeyDown}
-          placeholder="Enter text here"
-        />
-        <Button onClick={handleButtonClick}>Click me</Button>
+      <div className="p-4 bg-black text-white font-mono">
+        <div className="flex">
+          <div className="mr-2 text-green-500">$</div>
+          <div className="flex-1">
+            <TextBox text={displayText} />
+          </div>
+        </div>
+        <div className="flex mt-4">
+          <div className="mr-2 text-green-500">$</div>
+          <TextInput
+            value={inputText}
+            onChange={setInputText}
+            onKeyDown={handleKeyDown}
+            placeholder="Enter text here"
+          />
+        </div>
+        <div className="flex mt-4">
+          <div className="mr-2 text-green-500">$</div>
+          <Button onClick={handleButtonClick}>Click me</Button>
+        </div>
       </div>
-    </div>
-  );
+    );
 }

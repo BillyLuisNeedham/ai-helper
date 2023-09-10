@@ -11,7 +11,7 @@ export function GetDisplayText(state: PromptState): string {
       let displayText = "";
 
       state.answers.forEach((answer, index) => {
-        displayText += `${state.questions[index].question}\n\n${answer}\n\n`;
+        displayText += `${answer}\n\n`;
 
         if (index === state.answers.length - 1) {
           displayText += `${state.questions[index + 1].question}`;

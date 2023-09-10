@@ -14,8 +14,8 @@ export const TextInput: React.FC<TextInputProps> = ({
   onKeyDown,
 }) => {
   return (
-    <input
-      className="bg-transparent flex-1 focus:outline-none"
+    <textarea
+      className="bg-transparent flex-1 focus:outline-none w-full"
       type="text"
       value={value}
       onChange={(e) => onChange(e.target.value)}

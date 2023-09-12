@@ -15,3 +15,10 @@ interface PromptComplete {
 }
 
 type PromptState = PromptInProgress | PromptComplete;
+
+interface PromptOption {
+    name: string,
+    questions: Array<Question>,
+    exampleText: string,
+    commandCode: string,
+}

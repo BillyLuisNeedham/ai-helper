@@ -20,3 +20,10 @@ export const guideQuestions: Question[] = [
         answerPrefix: "Example: ",
     },
 ];
+
+export const guideOption: PromptOption = {
+    name: "Guide",
+    questions: guideQuestions,
+    exampleText: "Goal\nUser\nInstructions\nDetail\nExample",
+    commandCode: "g",
+}

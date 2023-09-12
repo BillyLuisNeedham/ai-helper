@@ -5,7 +5,7 @@ import { Button } from "../components/Button";
 import { TextBox } from "../components/TextBox";
 import { TextInput } from "../components/TextInput";
 import usePromptEngine from "@/hooks/usePromptEngine/usePromptEngine";
-import { guideQuestions } from "@/data/guideQuestions";
+import { guideQuestions } from "@/data/PromptOptions/guideQuestions";
 import { GetDisplayText } from "@/functions/GetDisplayText/GetDisplayText";
 
 export default function Home() {

@@ -5,12 +5,10 @@ import { swissOption } from "../../data/PromptOptions/swissQuestions";
 // TODO build all tests
 describe('appEngine', () => {
 
-    // Test that the appEngine function returns the expected state when the status is "initial".
-    it('should return the expected state when status is "initial"', () => {
+    it('should return the select phase state when status is "initial"', () => {
       // Arrange
       const state: AppEngineState = {
         status: "initial",
-        displayString: "",
         options: [
             guideOption,
             swissOption

@@ -22,3 +22,15 @@ interface PromptOption {
     exampleText: string,
     commandCode: string,
 }
+
+type DisplayState = DisplayOptionsInProgress | DisplayOptionsComplete;
+
+interface DisplayOptionsInProgress {
+    status: "in progress",
+    options: Array<PromptOption>,
+}
+
+interface DisplayOptionsComplete {
+    status: "complete",
+    selectedQuestions: Array<Question,
+}

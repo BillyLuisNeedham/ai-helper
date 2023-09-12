@@ -6,17 +6,17 @@ import { TextBox } from "../components/TextBox";
 import { TextInput } from "../components/TextInput";
 import usePromptEngine from "@/hooks/usePromptEngine/usePromptEngine";
 import { guideQuestions } from "@/data/PromptOptions/guideQuestions";
-import { GetDisplayText } from "@/functions/GetDisplayText/GetDisplayText";
+import { GetPromptStateDisplayText } from "@/functions/GetPromptStateDisplayText/GetPromptStateDisplayText";
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
   const promptState = usePromptEngine(guideQuestions);
   const [displayText, setDisplayText] = useState(
-    GetDisplayText(promptState.value)
+    GetPromptStateDisplayText(promptState.value)
   );
 
   useEffect(() => {
-    setDisplayText(GetDisplayText(promptState.value));
+    setDisplayText(GetPromptStateDisplayText(promptState.value));
   }, [promptState.value]);
 
   const handleButtonClick = () => {
@@ -32,7 +32,7 @@ export default function Home() {
 
   const handleReset = () => {
     promptState.reset();
-    setDisplayText(GetDisplayText(promptState.value));
+    setDisplayText(GetPromptStateDisplayText(promptState.value));
     setInputText("");
   };
 

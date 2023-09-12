@@ -1,12 +1,12 @@
 import { PromptEngine } from "../PromptEngine/PromptEngine";
 import { mockQuestions } from "../PromptEngine/PromptEngine.test";
-import { GetDisplayText } from "./GetDisplayText";
+import { GetPromptStateDisplayText } from "./GetPromptStateDisplayText";
 
 describe("GetDisplayText", () => {
   // Test that the GetDisplayText function returns the first question when the PromptState is PromptInProgress and there are no answers
   it("should return the first question when there are no answers", () => {
     const state: PromptState = inProgressBaseState;
-    const result = GetDisplayText(state);
+    const result = GetPromptStateDisplayText(state);
 
     expect(result).toEqual(mockQuestions[0].question);
   });
@@ -18,7 +18,7 @@ describe("GetDisplayText", () => {
       questions: [],
       answers: [],
     };
-    const result = GetDisplayText(state);
+    const result = GetPromptStateDisplayText(state);
 
     expect(result).toEqual("");
   });
@@ -33,7 +33,7 @@ describe("GetDisplayText", () => {
       answers[0]
     );
     const stateFinal: PromptState = PromptEngine(stateInitial, answers[1]);
-    const result = GetDisplayText(stateFinal);
+    const result = GetPromptStateDisplayText(stateFinal);
 
     expect(result).toEqual(expectedState);
   });

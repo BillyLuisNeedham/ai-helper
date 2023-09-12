@@ -3,7 +3,7 @@
  * @param state - The `PromptState` object that contains the status, questions, and answers.
  * @returns The formatted display text based on the `PromptState` object.
  */
-export function GetDisplayText(state: PromptState): string {
+export function GetPromptStateDisplayText(state: PromptState): string {
   if (state.status === "in progress") {
     if (state.answers.length === 0) {
       return state?.questions[0]?.question ?? "";

@@ -42,6 +42,7 @@ type AppEngineState =
   | AppEngineComplete;
 
 interface AppEngineInitialState {
+  displayString?: string;
   status: "initial";
   options: Array<PromptOption>;
 }

@@ -5,22 +5,26 @@ import { Button } from "../components/Button";
 import { TextBox } from "../components/TextBox";
 import { TextInput } from "../components/TextInput";
 import usePromptEngine from "@/hooks/usePromptEngine/usePromptEngine";
-import { guideQuestions } from "@/data/PromptOptions/guideQuestions";
+import { guideOption, guideQuestions } from "@/data/PromptOptions/guideQuestions";
 import { GetPromptStateDisplayText } from "@/functions/GetPromptStateDisplayText/GetPromptStateDisplayText";
+import { useAppEngine } from "@/hooks/useAppEngine/useAppEngine";
+import { swissOption } from "@/data/PromptOptions/swissQuestions";
+
+const prompts: PromptOption[] = [guideOption, swissOption]
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
-  const promptState = usePromptEngine(guideQuestions);
+  const appState = useAppEngine(prompts);
   const [displayText, setDisplayText] = useState(
-    GetPromptStateDisplayText(promptState.value)
+    appState.value.displayString ?? ""
   );
 
   useEffect(() => {
-    setDisplayText(GetPromptStateDisplayText(promptState.value));
-  }, [promptState.value]);
+    setDisplayText(appState.value.displayString ?? "");
+  }, [appState.value]);
 
   const handleButtonClick = () => {
-    promptState.onNewAnswer(inputText);
+    appState.onNewCommand(inputText);
     setInputText("");
   };
 
@@ -31,8 +35,8 @@ export default function Home() {
   };
 
   const handleReset = () => {
-    promptState.reset();
-    setDisplayText(GetPromptStateDisplayText(promptState.value));
+    setDisplayText("");
+    appState.reset();
     setInputText("");
   };
 

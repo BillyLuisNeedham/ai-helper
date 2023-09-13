@@ -41,7 +41,7 @@ export default function Home() {
   };
 
   return (
-    <div className="p-4 bg-black text-white font-mono">
+    <div className="min-h-screen p-4 bg-black text-white font-mono">
       <div className="flex">
         <div className="mr-2 text-green-500">$</div>
         <div className="flex-1">

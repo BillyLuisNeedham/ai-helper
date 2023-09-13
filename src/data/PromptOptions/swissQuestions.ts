@@ -9,7 +9,7 @@ export const swissQuestions: Question[] = [
     },
     {
         question: 'Third step:\nGive the AI control: "Now ask me all the questions that you need to [your idea here]"',
-        answerPrefix: "",
+        answerPrefix: "Now ask me all the questions that you need to ",
     }
 ]
 

@@ -73,12 +73,12 @@ function onInitial(state: AppEngineInitialState): AppEngineState {
   };
 }
 
-function getInitialString(state: AppEngineInitialState): string {
+export function getInitialString(state: AppEngineInitialState): string {
   return state.options
     .map((option) => getPromptOptionText(option))
     .join("\n\n");
 }
 
-function getPromptOptionText(option: PromptOption): string {
+export function getPromptOptionText(option: PromptOption): string {
   return `${option.name} prompt select by typing ${option.commandCode}\n${option.exampleText}`;
 }

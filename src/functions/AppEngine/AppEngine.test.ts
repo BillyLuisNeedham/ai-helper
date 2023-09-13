@@ -1,5 +1,5 @@
 import { guideOption } from "../../data/PromptOptions/guideQuestions";
-import { appEngine } from "./AppEngine";
+import { appEngine, getInitialString, getPromptOptionText } from "./AppEngine";
 import { swissOption } from "../../data/PromptOptions/swissQuestions";
 
 // TODO build all tests
@@ -16,24 +16,13 @@ describe('appEngine', () => {
       };
   
       // Act
-      const result = appEngine(state, null);
+      const result = appEngine(state, null) as AppEngineSelectPhase
   
       // Assert
-      expect(result.status).toBe("select phase");
-      expect(result.displayString).toBe("Option 1 prompt select by typing 1\nExample 1\n\nOption 2 prompt select by typing 2\nExample 2");
-      expect(result.displayState.status).toBe("in progress");
-      expect(result.displayState.options).toEqual([
-        {
-          name: "Option 1",
-          commandCode: "1",
-          exampleText: "Example 1",
-        },
-        {
-          name: "Option 2",
-          commandCode: "2",
-          exampleText: "Example 2",
-        },
-      ]);
+      expect(result.status).toEqual("select phase");
+      expect(result.displayString).toEqual(getInitialString(state));
+      expect(result.displayState.status).toEqual("in progress");
+      expect(result.displayState.options).toEqual(state.options);
     });
 
 

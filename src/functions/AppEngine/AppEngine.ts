@@ -37,7 +37,11 @@ function onBuildPhase(
         prompt: promptState.prompt
     }
   } else {
-    return state
+    return {
+      displayString: GetPromptStateDisplayText(promptState),
+      status: "build phase",
+      promptState,
+    }
   }
 }
 

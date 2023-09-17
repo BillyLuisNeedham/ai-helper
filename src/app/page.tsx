@@ -41,6 +41,8 @@ export default function Home() {
       )
     ) {
       appState.onNewCommand(newText)
+    } else if (appIsCompleteAndInputIsReset(newText, appState.value)) {
+      handleReset()
     } else {
       setInputText(newText)
     }
@@ -73,4 +75,12 @@ function appIsInSelectPhaseAndInputIsSuitableToFireImmediately(
   appState: AppEngineState
 ): boolean {
   return appState.status === "select phase" && newText.length === 1
+}
+function appIsCompleteAndInputIsReset(
+  newText: string,
+  state: AppEngineState
+): boolean {
+  const newTextIsReset = newText.toLowerCase() === "r"
+
+  return state.status === "complete" && newTextIsReset
 }

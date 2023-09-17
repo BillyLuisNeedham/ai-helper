@@ -6,16 +6,19 @@ export function appEngine(
   state: AppEngineState,
   command: string | null
 ): AppEngineState {
+
+  const formattedCommand = command?.trim().toLowerCase() ?? null;
+
   if (state.status === "initial") {
     return onInitial(state);
   }
 
   if (state.status === "select phase") {
-    return onSelectPhase(state, command);
+    return onSelectPhase(state, formattedCommand);
   }
 
   if (state.status === "build phase") {
-    return onBuildPhase(state, command);
+    return onBuildPhase(state, formattedCommand);
   }
 
   return state;

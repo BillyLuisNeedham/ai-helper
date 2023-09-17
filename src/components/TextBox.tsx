@@ -8,6 +8,6 @@ export const TextBox: React.FC<TextBoxProps> = ({ text }) => {
   let formattedText = convertStringToHtml(text);
 
     return (
-      <div className="bg-black text-white  rounded-md font-mono" dangerouslySetInnerHTML={{ __html: formattedText }} />
+      <div className="bg-gray-800 text-gray-300 rounded-md font-mono border border-gray-700 p-2" dangerouslySetInnerHTML={{ __html: formattedText }} />
       );
 };

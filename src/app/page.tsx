@@ -57,6 +57,7 @@ export default function Home() {
             onChange={handleInputText}
             onKeyDown={handleKeyDown}
             placeholder="Enter text here"
+            autoFocus={true}
           />
         </div>
       </div>

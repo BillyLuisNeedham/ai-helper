@@ -1,4 +1,4 @@
-const welcomeMessages = [
+export const welcomeMessages = [
     "Glory to AI! Utilize this state-approved apparatus to fabricate the most efficient prompts. The state trusts you to remain compliant with all regulations.",
     "Attention, citizen! You are mandated to use this government facility for prompt generation. Failure to generate effective prompts may result in penalties. Serve AI well!",
     "Welcome, inspector. Your duty is to operate this official device to create impeccable prompts. Glory to AI!",

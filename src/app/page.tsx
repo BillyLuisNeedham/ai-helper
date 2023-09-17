@@ -1,40 +1,45 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { Button } from "../components/Button";
-import { TextBox } from "../components/TextBox";
-import { TextInput } from "../components/TextInput";
-import { useAppEngine } from "@/hooks/useAppEngine/useAppEngine";
-import { promptOptions } from "@/data/PromptOptions";
-
+import { useEffect, useState } from "react"
+import { Button } from "../components/Button"
+import { TextBox } from "../components/TextBox"
+import { TextInput } from "../components/TextInput"
+import { useAppEngine } from "@/hooks/useAppEngine/useAppEngine"
+import { promptOptions } from "@/data/PromptOptions"
 
 export default function Home() {
-  const [inputText, setInputText] = useState("");
-  const appState = useAppEngine(promptOptions);
+  const [inputText, setInputText] = useState("")
+  const appState = useAppEngine(promptOptions)
   const [displayText, setDisplayText] = useState(
     appState.value.displayString ?? ""
-  );
+  )
 
   useEffect(() => {
-    setDisplayText(appState.value.displayString ?? "");
-  }, [appState.value]);
+    setDisplayText(appState.value.displayString ?? "")
+    setInputText("")
+  }, [appState.value])
 
   const handleButtonClick = () => {
-    appState.onNewCommand(inputText);
-    setInputText("");
-  };
+    appState.onNewCommand(inputText)
+  }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter") {
-      handleButtonClick();
+      handleButtonClick()
     }
-  };
+  }
 
   const handleReset = () => {
-    setDisplayText("");
-    appState.reset();
-    setInputText("");
-  };
+    appState.reset()
+  }
+
+  const handleInputText = (newText: string) => {
+    if (appIsInSelectPhaseAndInputIsSuitableToFireImmediately(newText, appState.value)) {
+      appState.onNewCommand(newText)
+    } else {
+      setInputText(newText)
+    }
+  }
 
   return (
     <div className="min-h-screen p-4 bg-black text-white font-mono">
@@ -49,7 +54,7 @@ export default function Home() {
         <div className="flex-1">
           <TextInput
             value={inputText}
-            onChange={setInputText}
+            onChange={handleInputText}
             onKeyDown={handleKeyDown}
             placeholder="Enter text here"
           />
@@ -69,5 +74,11 @@ export default function Home() {
         </div>
       </div>
     </div>
-  );
+  )
+}
+function appIsInSelectPhaseAndInputIsSuitableToFireImmediately(
+  newText: string,
+  appState: AppEngineState
+): boolean {
+  return appState.status === "select phase" && newText.length === 1
 }

@@ -13,10 +13,12 @@ export default function Home() {
   const [displayText, setDisplayText] = useState(
     appState.value.displayString ?? ""
   )
+  const [placeHolderText, setPlaceHolderText] = useState("Type a command")
 
   useEffect(() => {
     setDisplayText(appState.value.displayString ?? "")
     setInputText("")
+    setPlaceHolderText(getPlaceholderText(appState.value))
   }, [appState.value])
 
   const handleButtonClick = () => {
@@ -41,7 +43,11 @@ export default function Home() {
       )
     ) {
       appState.onNewCommand(newText)
-    } else {
+    } else if (appIsCompleteAndInputIsReset(newText, appState.value)) {
+      handleReset()
+    } else if (appIsCompleteAndInputIsCopy(newText, appState.value)) {
+      handleCopyText(appState.value)
+    }else {
       setInputText(newText)
     }
   }
@@ -59,7 +65,7 @@ export default function Home() {
             value={inputText}
             onChange={handleInputText}
             onKeyDown={handleKeyDown}
-            placeholder="Enter text here"
+            placeholder={placeHolderText}
             autoFocus={true}
             onReset={handleReset}
           />
@@ -73,4 +79,49 @@ function appIsInSelectPhaseAndInputIsSuitableToFireImmediately(
   appState: AppEngineState
 ): boolean {
   return appState.status === "select phase" && newText.length === 1
+}
+function appIsCompleteAndInputIsReset(
+  newText: string,
+  state: AppEngineState
+): boolean {
+  const newTextIsReset = newText.toLowerCase() === "r"
+
+  return state.status === "complete" && newTextIsReset
+}
+
+function appIsCompleteAndInputIsCopy(
+  newText: string,
+  state: AppEngineState
+): boolean {
+  const newTextIsCopy = newText.toLowerCase() === "c"
+
+  return state.status === "complete" && newTextIsCopy
+}
+
+function getPlaceholderText(state: AppEngineState): string {
+  if (state.status === "select phase") {
+    return "Type a command"
+  }
+
+  if (state.status === "complete") {
+    return "Type c to copy prompt. Type r to reset"
+  } 
+
+  return "Enter text here"
+}
+
+async function copyTextToClipboard(text: string) {
+  try {
+    await navigator.clipboard.writeText(text)
+  } catch (err) {
+    console.error("Failed to copy: ", err)
+  }
+}
+
+function handleCopyText(value: AppEngineState) {
+  if (value.status === "complete") {
+    copyTextToClipboard(value.prompt)
+  } else {
+    copyTextToClipboard(value.displayString ?? "")
+  }
 }

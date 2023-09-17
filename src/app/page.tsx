@@ -45,7 +45,9 @@ export default function Home() {
       appState.onNewCommand(newText)
     } else if (appIsCompleteAndInputIsReset(newText, appState.value)) {
       handleReset()
-    } else {
+    } else if (appIsCompleteAndInputIsCopy(newText, appState.value)) {
+      handleCopyText(appState.value)
+    }else {
       setInputText(newText)
     }
   }
@@ -87,14 +89,39 @@ function appIsCompleteAndInputIsReset(
   return state.status === "complete" && newTextIsReset
 }
 
+function appIsCompleteAndInputIsCopy(
+  newText: string,
+  state: AppEngineState
+): boolean {
+  const newTextIsCopy = newText.toLowerCase() === "c"
+
+  return state.status === "complete" && newTextIsCopy
+}
+
 function getPlaceholderText(state: AppEngineState): string {
   if (state.status === "select phase") {
     return "Type a command"
   }
 
   if (state.status === "complete") {
-    return "Type r to reset"
+    return "Type c to copy prompt. Type r to reset"
   } 
 
   return "Enter text here"
+}
+
+async function copyTextToClipboard(text: string) {
+  try {
+    await navigator.clipboard.writeText(text)
+  } catch (err) {
+    console.error("Failed to copy: ", err)
+  }
+}
+
+function handleCopyText(value: AppEngineState) {
+  if (value.status === "complete") {
+    copyTextToClipboard(value.prompt)
+  } else {
+    copyTextToClipboard(value.displayString ?? "")
+  }
 }

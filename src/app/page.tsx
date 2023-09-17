@@ -13,10 +13,12 @@ export default function Home() {
   const [displayText, setDisplayText] = useState(
     appState.value.displayString ?? ""
   )
+  const [placeHolderText, setPlaceHolderText] = useState("Type a command")
 
   useEffect(() => {
     setDisplayText(appState.value.displayString ?? "")
     setInputText("")
+    setPlaceHolderText(getPlaceholderText(appState.value))
   }, [appState.value])
 
   const handleButtonClick = () => {
@@ -61,7 +63,7 @@ export default function Home() {
             value={inputText}
             onChange={handleInputText}
             onKeyDown={handleKeyDown}
-            placeholder="Enter text here"
+            placeholder={placeHolderText}
             autoFocus={true}
             onReset={handleReset}
           />
@@ -83,4 +85,16 @@ function appIsCompleteAndInputIsReset(
   const newTextIsReset = newText.toLowerCase() === "r"
 
   return state.status === "complete" && newTextIsReset
+}
+
+function getPlaceholderText(state: AppEngineState): string {
+  if (state.status === "select phase") {
+    return "Type a command"
+  }
+
+  if (state.status === "complete") {
+    return "Type r to reset"
+  } 
+
+  return "Enter text here"
 }

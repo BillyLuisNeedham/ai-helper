@@ -34,7 +34,12 @@ export default function Home() {
   }
 
   const handleInputText = (newText: string) => {
-    if (appIsInSelectPhaseAndInputIsSuitableToFireImmediately(newText, appState.value)) {
+    if (
+      appIsInSelectPhaseAndInputIsSuitableToFireImmediately(
+        newText,
+        appState.value
+      )
+    ) {
       appState.onNewCommand(newText)
     } else {
       setInputText(newText)
@@ -42,15 +47,13 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen p-4 bg-black text-white font-mono">
+    <div className="min-h-screen p-4 bg-gray-800 text-gray-300 font-mono">
       <div className="flex">
-        <div className="mr-2 text-green-500">$</div>
         <div className="flex-1">
           <TextBox text={displayText} />
         </div>
       </div>
       <div className="flex mt-4">
-        <div className="mr-2 text-green-500">$</div>
         <div className="flex-1">
           <TextInput
             value={inputText}
@@ -58,20 +61,8 @@ export default function Home() {
             onKeyDown={handleKeyDown}
             placeholder="Enter text here"
             autoFocus={true}
+            onReset={handleReset}
           />
-        </div>
-      </div>
-      <div className="flex mt-4">
-        <div className="mr-2 text-green-500">$</div>
-        <div className="flex-1">
-          <div className="flex">
-            <div className="mr-4">
-              <Button onClick={handleButtonClick}>Click me</Button>
-            </div>
-            <div>
-              <Button onClick={handleReset}>Reset</Button>
-            </div>
-          </div>
         </div>
       </div>
     </div>

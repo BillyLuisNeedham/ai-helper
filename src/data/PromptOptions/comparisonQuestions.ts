@@ -13,5 +13,5 @@ export const comparisonOption: PromptOption = {
     name: "Comparison",
     questions: comparisonQuestions,
     exampleText: "Task\nComparison",
-    commandCode: "c",
+    commandCode: "p",
 }

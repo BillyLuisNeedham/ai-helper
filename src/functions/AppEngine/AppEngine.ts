@@ -1,6 +1,7 @@
 import { displayOptions } from "../DisplayOptions/DisplayOptions"
 import { GetPromptStateDisplayText } from "../GetPromptStateDisplayText/GetPromptStateDisplayText"
 import { PromptEngine } from "../PromptEngine/PromptEngine"
+import { getWelcomeMessage } from "../WelcomeMessage/WelcomeMessage"
 
 export function appEngine(
   state: AppEngineState,
@@ -80,7 +81,13 @@ function onInitial(state: AppEngineInitialState): AppEngineState {
 }
 
 export function getInitialString(state: AppEngineInitialState): string {
-  return state.options.map((option) => getPromptOptionText(option)).join("\n\n")
+  const welcomeMessage = getWelcomeMessage()
+
+  const options = state.options
+    .map((option) => getPromptOptionText(option))
+    .join("\n\n")
+
+  return `${welcomeMessage}\n\n${options}`
 }
 
 export function getPromptOptionText(option: PromptOption): string {

@@ -4,6 +4,7 @@ import { guideOption } from "./guideQuestions";
 import { scenarioAnalysisOption } from "./scenarioAnalysisQuestions";
 import { swissOption } from "./swissQuestions";
 import { swotOption } from "./swotQuestions";
+import { tutorialOption } from "./tutorialQuestions";
 
 export const promptOptions: PromptOption[] = [
     guideOption,
@@ -12,4 +13,5 @@ export const promptOptions: PromptOption[] = [
     checklistOption,
     swotOption,
     scenarioAnalysisOption,
+    tutorialOption,
 ]

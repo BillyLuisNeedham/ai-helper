@@ -4,17 +4,13 @@ import { useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { TextBox } from "../components/TextBox";
 import { TextInput } from "../components/TextInput";
-import usePromptEngine from "@/hooks/usePromptEngine/usePromptEngine";
-import { guideOption, guideQuestions } from "@/data/PromptOptions/guideQuestions";
-import { GetPromptStateDisplayText } from "@/functions/GetPromptStateDisplayText/GetPromptStateDisplayText";
 import { useAppEngine } from "@/hooks/useAppEngine/useAppEngine";
-import { swissOption } from "@/data/PromptOptions/swissQuestions";
+import { promptOptions } from "@/data/PromptOptions";
 
-const prompts: PromptOption[] = [guideOption, swissOption]
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
-  const appState = useAppEngine(prompts);
+  const appState = useAppEngine(promptOptions);
   const [displayText, setDisplayText] = useState(
     appState.value.displayString ?? ""
   );

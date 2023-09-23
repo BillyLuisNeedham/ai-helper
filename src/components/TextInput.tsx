@@ -25,13 +25,20 @@ export const TextInput: React.FC<TextInputProps> = ({
     }
   }, [autoFocus])
 
+  useEffect(() => {
+    resizeInput()
+  }, [value])
+
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onChange(event.target.value)
+  }
+
+  const resizeInput = () => {
     const textarea = textareaRef.current
     if (textarea) {
       textarea.style.height = "auto"
       textarea.style.height = `${textarea.scrollHeight}px`
     }
-    onChange(event.target.value)
   }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {

@@ -1,12 +1,13 @@
 {
-  "name": "wizard-prompts",
+  "name": "comrade-prompts",
   "version": "1.2.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest"
   },
   "dependencies": {
     "@types/node": "20.5.7",

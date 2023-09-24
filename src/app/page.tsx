@@ -48,7 +48,7 @@ export default function Home() {
       handleReset()
     } else if (appIsCompleteAndInputIsCopy(newText, appState.value)) {
       handleCopyText(appState.value)
-    }else {
+    } else {
       setInputText(newText)
     }
   }
@@ -106,7 +106,7 @@ function getPlaceholderText(state: AppEngineState): string {
 
   if (state.status === "complete") {
     return "Type c to copy prompt. Type r to reset"
-  } 
+  }
 
   return "Enter text here"
 }
@@ -127,7 +127,10 @@ function handleCopyText(value: AppEngineState) {
   }
 }
 function handleScrollingScreen(value: AppEngineState) {
-  if (value.status === "select phase") {
+  if (
+    value.status === "select phase" ||
+    (value.status === "build phase" && value.promptState.answers.length === 0)
+  ) {
     scrollToTop()
   } else {
     scrollToBottom()
@@ -141,4 +144,3 @@ function scrollToBottom() {
 function scrollToTop() {
   window.scrollTo(0, 0)
 }
-

@@ -54,7 +54,7 @@ export const TextInput: React.FC<TextInputProps> = ({
     <div className="relative flex items-center bg-gray-800 border border-gray-700 rounded">
       <textarea
         ref={textareaRef}
-        className="flex-1 bg-gray-800 text-gray-300 focus:outline-none resize-none placeholder-gray-500 py-2 px-2"
+        className="flex-1 bg-gray-800 text-gray-300 focus:outline-none resize-none placeholder-gray-500 py-2 px-2 pr-4"
         rows={1}
         value={value}
         onChange={handleChange}

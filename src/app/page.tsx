@@ -19,6 +19,7 @@ export default function Home() {
     setDisplayText(appState.value.displayString ?? "")
     setInputText("")
     setPlaceHolderText(getPlaceholderText(appState.value))
+    handleScrollingScreen(appState.value)
   }, [appState.value])
 
   const handleButtonClick = () => {
@@ -125,3 +126,19 @@ function handleCopyText(value: AppEngineState) {
     copyTextToClipboard(value.displayString ?? "")
   }
 }
+function handleScrollingScreen(value: AppEngineState) {
+  if (value.status === "select phase") {
+    scrollToTop()
+  } else {
+    scrollToBottom()
+  }
+}
+
+function scrollToBottom() {
+  window.scrollTo(0, document.body.scrollHeight)
+}
+
+function scrollToTop() {
+  window.scrollTo(0, 0)
+}
+
